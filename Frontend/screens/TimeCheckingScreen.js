@@ -159,8 +159,14 @@ const TimeTrackingScreen = () => {
 
     const handleCheckIn = async () => {
       if (location) {
-        if (location.coords.latitude === fixedLocation.latitude && location.coords.longitude === fixedLocation.longitude) {
-          // Alert.alert('Success', 'You are at the fixed location.');
+        // if (location.coords.latitude === fixedLocation.latitude && location.coords.longitude === fixedLocation.longitude) {
+        if (
+          location.coords.latitude >= fixedLocation.latitude - 10 &&
+          location.coords.latitude <= fixedLocation.latitude + 10 &&
+          location.coords.longitude >= fixedLocation.longitude - 10 &&
+          location.coords.longitude <= fixedLocation.longitude + 10
+        ){  
+        // Alert.alert('Success', 'You are at the fixed location.');
           const currentTime = new Date();
           try {
             const content = await fetchAPI('ChamCong', {
@@ -189,7 +195,13 @@ const TimeTrackingScreen = () => {
 
     const handleCheckOut = async () => {
       if (location) {
-        if (location.coords.latitude === fixedLocation.latitude && location.coords.longitude === fixedLocation.longitude) {
+        // if (location.coords.latitude === fixedLocation.latitude && location.coords.longitude === fixedLocation.longitude) {
+          if (
+            location.coords.latitude >= fixedLocation.latitude - 10 &&
+            location.coords.latitude <= fixedLocation.latitude + 10 &&
+            location.coords.longitude >= fixedLocation.longitude - 10 &&
+            location.coords.longitude <= fixedLocation.longitude + 10
+          ){
           // Alert.alert('Success', 'You are at the fixed location.');
           const currentTime = new Date();
           try {
@@ -336,7 +348,7 @@ const TimeTrackingScreen = () => {
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>Your Current Location:</Text>
         <Text>{location ? `Latitude: ${location.coords.latitude}, Longitude: ${location.coords.longitude}` : 'Unknown'}</Text>
-        <Button title="Check1 Location" onPress={handleCheckLocation} />
+        {/* <Button title="Check1 Location" onPress={handleCheckLocation} /> */}
       </View>
     </View>
   );
